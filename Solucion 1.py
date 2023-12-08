@@ -1,5 +1,35 @@
 import time 
 
+def mi_min(lista):
+    lista_convertida = list(lista) 
+    if not lista_convertida:
+        raise ValueError("La lista está vacía")
+    
+    minimum = lista_convertida[0]
+    for elemento in lista_convertida[1:]:
+        if elemento < minimum:
+            minimum = elemento
+    return minimum
+
+def mi_max(lista):
+    lista_convertida = list(lista)  
+    if not lista_convertida:
+        raise ValueError("La lista está vacía")
+    
+    maximum = lista_convertida[0]
+    for elemento in lista_convertida[1:]:
+        if elemento > maximum:
+            maximum = elemento
+    return maximum
+
+def mi_sum(lista):
+    total = 0
+    for elemento in lista:
+        total += elemento
+    return total
+
+
+    
 def espectaculo_zoo(n, m, k, animales, grandezas, apertura, partes):
     animales_grandezas = list(zip(animales, grandezas))
     
@@ -50,13 +80,13 @@ def espectaculo_zoo(n, m, k, animales, grandezas, apertura, partes):
                 else:
                     participacion_animales[animal] = 1
     
-    max_participacion = max(participacion_animales.values())
+    max_participacion = mi_max(participacion_animales.values())
     animales_max_participacion = [animal for animal, participacion in participacion_animales.items() if participacion == max_participacion]
     
-    min_participacion = min(participacion_animales.values())
+    min_participacion = mi_min(participacion_animales.values())
     animales_min_participacion = [animal for animal, participacion in participacion_animales.items() if participacion == min_participacion]
     
-    suma_total_grandezas = sum(grandezas)
+    suma_total_grandezas = mi_sum(grandezas)
     promedio_grandezas = suma_total_grandezas / (m * k)
     
     print("El orden en el que se debe presentar el espectáculo es:")
@@ -110,6 +140,6 @@ partes = [
     [["hipopótamo", "cebra", "cocodrilo", "mono", "gorila"], ["serpiente", "águila", "loro", "pavo", "oso"]]
 ]
 
-
-
 medir_tiempo(n, m, k, animales, grandezas, apertura, partes)
+
+
